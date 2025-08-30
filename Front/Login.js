@@ -28,6 +28,8 @@
 //   });
 // });
 document.getElementById("loginBtn").addEventListener("click", async () => {
+  event.preventDefault(); // stop the default form submit
+  window.location.href = "Home.html"; // redirect to front.html
   const orgId = document.getElementById("orgId").value.trim();
 
   if (!orgId) {
@@ -66,3 +68,6 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
     alert("Server not responding or invalid response.");
   }
 });
+
+
+

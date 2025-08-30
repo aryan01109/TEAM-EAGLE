@@ -1,56 +1,61 @@
-// Load credits dynamically on page load
-window.onload = function () {
-  let credits = JSON.parse(localStorage.getItem("credits")) || [];
-  const listContainer = document.querySelector(".list");
-  listContainer.innerHTML = ""; // Clear existing hardcoded items
+// Load credits dynamically from backend
+window.onload = async function () {
+  try {
+    const res = await fetch("http://localhost:5000/api/credits");
+    const credits = await res.json();
 
-  if (credits.length === 0) {
-    listContainer.innerHTML = "<p>No credits available for compliance check.</p>";
-    return;
+    const select = document.getElementById("creditId");
+    select.innerHTML = '<option value="">-- choose --</option>';
+
+    credits.forEach((credit) => {
+      if (!credit.retired) { // only show active credits
+        const option = document.createElement("option");
+        option.value = credit.id;
+        option.textContent = `${credit.id} — ${credit.type} (${credit.volume} kg)`;
+        select.appendChild(option);
+      }
+    });
+  } catch (err) {
+    alert("Failed to load credits.");
   }
-
-  credits.forEach((credit) => {
-    const item = document.createElement("div");
-    item.className = "item";
-    item.innerHTML = `
-      <div>
-        <div class="item-title">${credit.id} — ${credit.type}</div>
-        <div class="item-strong">${credit.volume} kg • owner: ${credit.owner}</div>
-      </div>
-      <button class="btn" onclick="runChecks('${credit.id}')">Run checks</button>
-    `;
-    listContainer.appendChild(item);
-  });
 };
 
-// Simulate running compliance checks
-function runChecks(creditId) {
-  let credits = JSON.parse(localStorage.getItem("credits")) || [];
-  let credit = credits.find((c) => c.id === creditId);
+// Handle retire form
+document.querySelector("form").addEventListener("submit", async function (e) {
+  e.preventDefault();
 
-  if (!credit) {
-    alert("Credit not found.");
+  const creditId = document.getElementById("creditId").value;
+  const amount = Number(document.getElementById("amount").value);
+
+  if (!creditId) {
+    alert("Please select a credit.");
+    return;
+  }
+  if (!amount || amount <= 0) {
+    alert("Please enter a valid amount.");
     return;
   }
 
-  // Fake compliance checks
-  let complianceResult = `
-  Compliance Check Results:
-  -------------------------
-  Credit ID: ${credit.id}
-  Source: ${credit.type}
-  Volume: ${credit.volume} kg
-  Owner: ${credit.owner}
+  try {
+    const res = await fetch(`http://localhost:5000/api/credits/${creditId}/retire`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount }),
+    });
 
-  ✅ RFNBO check: Passed
-  ✅ PPA validity: Confirmed
-  ✅ Guarantee of Origin: Verified
-  `;
+    const data = await res.json();
+    if (res.ok) {
+      alert(`Credit Retired!\n\nID: ${data.credit.id}\nAmount: ${data.credit.retiredAmount} kg`);
+      window.location.href = "display.html";
+    } else {
+      alert("Error: " + data.error);
+    }
+  } catch (err) {
+    alert("Failed to connect to server.");
+  }
+});
 
-  alert(complianceResult);
-}
-
-// Go back to dashboard
-function goBack() {
+// Cancel button
+document.querySelector(".btn-cancel").addEventListener("click", function () {
   window.location.href = "display.html";
-}
+});

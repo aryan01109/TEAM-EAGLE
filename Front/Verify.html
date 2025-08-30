@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hydrogen Credits – Verify Compliance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Verify.css">
+</head>
+<body>
+  <!-- Semester 1 -->
+  <div class="card" role="dialog" aria-labelledby="title1" aria-describedby="subtitle1">
+    <h1 id="title1">Hydrogen Credits – Sem 1</h1>
+    <div id="subtitle1" class="subtitle">Verify Compliance</div>
+    <p class="hint">Select a credit to run quick compliance checks (RFNBO/PPA/GO).</p>
+
+    <div class="list">
+      <div class="item">
+        <div>
+          <div class="item-title">CRED-001 — Solar PPA</div>
+          <div class="item-strong">120 kg • owner: Org-A</div>
+        </div>
+        <button class="btn" onclick="runChecks('CRED-001')">Run checks</button>
+      </div>
+
+      <div class="item">
+        <div>
+          <div class="item-title">CRED-002 — Wind PPA</div>
+          <div class="item-strong">50 kg • owner: Org-A</div>
+        </div>
+        <button class="btn" onclick="runChecks('CRED-002')">Run checks</button>
+      </div>
+    </div>
+
+    <button class="btn back" onclick="goBack()">Back</button>
+  </div>
+
+  <script src="Verify.html"></script>
+</body>
+</html>

@@ -15,7 +15,10 @@ function renderCredits() {
     card.innerHTML = `
       <p><strong>${credit.id}</strong> – ${credit.type}</p>
       <p><span class="highlight">${credit.volume} kg</span> — owner:<br><b>${credit.owner}</b></p>
-      <button class="small-btn purple" onclick="verifyCredit(${index})">Verify</button>
+       document.getElementById("Certificate").addEventListener("click", function(event) {
+       event.preventDefault(); // stop the default form submit
+       window.location.href = "${/Certificate/certification.html}"; // redirect to front.html
+});
     `;
     creditsSection.appendChild(card);
   });
@@ -33,7 +36,8 @@ function renderCredits() {
 
 // Issue Credit
 document.querySelector(".btn.blue").addEventListener("click", () => {
-  const newId = `CRED-00${credits.length + 1}`;
+  event.preventDefault(); // stop the default form submit
+  window.location.href = "Issue.html"; // redirect to 
   const newCredit = {
     id: newId,
     type: "New PPA",
@@ -42,34 +46,40 @@ document.querySelector(".btn.blue").addEventListener("click", () => {
   };
   credits.push(newCredit);
   renderCredits();
-  alert(`New credit issued: ${newId}`);
+  // alert(`New credit issued: ${newId}`);
 });
 
 // Transfer Credit
 document.querySelector(".btn.orange").addEventListener("click", () => {
+  event.preventDefault(); // stop the default form submit
+  window.location.href = "Transfer.html"; // redirect to 
   if (credits.length === 0) return alert("No credits to transfer.");
   credits[0].owner = "Org-B"; // demo: transfer first credit
   renderCredits();
-  alert(`Transferred ${credits[0].id} to Org-B`);
+  // alert(`Transferred ${credits[0].id} to Org-B`);
 });
 
 
 document.querySelector(".btn.red").addEventListener("click", () => {
+  event.preventDefault(); // stop the default form submit
+  window.location.href = "Retire.html"; // redirect to 
   if (credits.length === 0) return alert("No credits to retire.");
   const retired = credits.pop();
   renderCredits();
-  alert(`Retired credit: ${retired.id}`);
+  // alert(`Retired credit: ${retired.id}`);
 });
 
 // Verify Compliance
 document.querySelector(".btn.purple").addEventListener("click", () => {
-  alert("Compliance check complete  (mocked).");
+  event.preventDefault(); // stop the default form submit
+  window.location.href = "Verify.html"; // redirect to 
+  // alert("Compliance check complete  (mocked).");
 });
 
 
-function verifyCredit(index) {
-  alert(`Credit ${credits[index].id} verified `);
-}
+// function verifyCredit(/Certificate/certification.html) {
+  // alert(`Credit ${credits[index].id} verified `);
+// }
 
 
 renderCredits();

@@ -63,13 +63,14 @@ document.querySelector(".btn.red").addEventListener("click", () => {
 
 // Verify Compliance
 document.querySelector(".btn.purple").addEventListener("click", () => {
-  alert("Compliance check complete ✅ (mocked).");
+  alert("Compliance check complete  (mocked).");
 });
 
 
 function verifyCredit(index) {
-  alert(`Credit ${credits[index].id} verified ✅`);
+  alert(`Credit ${credits[index].id} verified `);
 }
 
 
 renderCredits();
+

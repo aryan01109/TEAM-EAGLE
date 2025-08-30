@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Issue Hydrogen Credit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Issue.css">
+</head>
+<body>
+  <div class="page-bg">
+    <main class="center-wrap">
+      <div class="card">
+
+        <h1 class="title">Hydrogen Credits</h1>
+        <h2 class="subtitle">Issue Hydrogen Credit</h2>
+
+        <form id="issueForm">
+          <label for="volume" class="field-label">Volume (kg)</label>
+          <input type="number" id="volume" class="input" placeholder="e.g. 100" required />
+
+          <label for="source" class="field-label">Renewable Source</label>
+          <input type="text" id="source" class="input" placeholder="e.g. Solar PPA" required />
+
+          <div class="form-actions">
+            <button type="submit" class="btn green">Issue</button>
+            <button type="button" class="btn cancel">Cancel</button>
+          </div>
+        </form>
+
+      </div>
+    </main>
+  </div>
+  <script src="Issue.js"></script>
+</body>
+</html>

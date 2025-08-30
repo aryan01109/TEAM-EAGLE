@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hydrogen Credits</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Home.css">
+</head>
+<body>
+  <div class="page-bg">
+    <main class="center-wrap">
+      <div class="card">
+
+        <h1 class="title">Hydrogen Credits</h1>
+
+        <!-- Top action buttons -->
+        <div class="action-buttons">
+          <button class="btn blue">Issue Credit</button>
+          <button class="btn orange">Transfer Credit</button>
+          <button class="btn red">Retire Credit</button>
+          <button class="btn purple">Verify Compliance</button>
+        </div>
+
+        <!-- Content area -->
+        <div class="content">
+          <!-- Active credits -->
+          <section class="credits">
+            <h2>Active Credits</h2>
+            <div class="credit-card">
+              <p><strong>CRED-001</strong> – Solar PPA</p>
+              <p><span class="highlight">120 kg</span> — owner:<br><b>Org-A</b></p>
+              <button class="small-btn purple">Verify</button>
+            </div>
+
+            <div class="credit-card">
+              <p><strong>CRED-002</strong> – Wind PPA</p>
+              <p><span class="highlight">50 kg</span> — owner:<br><b>Org-A</b></p>
+              <button class="small-btn purple">Verify</button>
+            </div>
+          </section>
+
+          <!-- Quick Summary -->
+          <section class="summary">
+            <h2>Quick Summary</h2>
+            <div class="credit-card">
+            <p>Total credits: <b>2</b></p>
+            <p>Total volume: <b>170 kg</b></p>
+            <small>
+              Notes: This prototype shows local mock state only. Replace with API/blockchain calls for production.
+              
+            </small>
+            </div>
+          </section>
+        </div>
+
+      </div>
+    </main>
+  </div>
+    <script src="Home.js"></script>
+</body>
+</html>

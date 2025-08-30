@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transfer Credit</title>
+  <link rel="stylesheet" href="Transfer.css">
+</head>
+<body>
+  <div class="card">
+    <h2>Hydrogen Credits</h2>
+    <h3>Transfer Credit</h3>
+
+    <form>
+      <label for="creditId">Select Credit ID</label>
+      <select id="creditId" required>
+        <option value="">-- choose --</option>
+        <option value="cred-001">CRED-001</option>
+        <option value="cred-002">CRED-002</option>
+      </select>
+
+      <label for="recipient">Recipient ID</label>
+      <input type="text" id="recipient" placeholder="Recipient org" required>
+
+      <label for="amount">Amount (kg)</label>
+      <input type="number" id="amount" placeholder="Amount to transfer" required>
+
+      <div class="btn-container">
+        <button type="submit" class="btn-transfer">Transfer</button>
+        <button type="button" class="btn-cancel">Cancel</button>
+      </div>
+    </form>
+  </div>
+    <script src="Transfer.js"></script>
+</body>
+</html>

@@ -24,6 +24,30 @@ const creditSchema = new mongoose.Schema({
 });
 
 const Credit = mongoose.model("Credit", creditSchema);
+app.post("/login", async (req, res) => {
+  const { orgId } = req.body;
+
+  if (!orgId) {
+    return res.status(400).json({ success: false, message: "Organization ID required" });
+  }
+
+  try {
+    const org = await Organization.findOne({ orgId });
+
+    if (!org) {
+      return res.status(404).json({ success: false, message: "Organization not found" });
+    }
+
+    res.json({
+      success: true,
+      message: `Welcome, ${org.name || org.orgId}!`,
+      orgId: org.orgId,
+    });
+  } catch (err) {
+    console.error("Error during login:", err);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
 
 // Fetch and render credits from backend
 async function fetchCredits() {
@@ -33,7 +57,7 @@ async function fetchCredits() {
     renderCredits();
   } catch (err) {
     console.error("Failed to fetch credits", err);
-    alert("⚠️ Could not load credits from server.");
+    alert(" Could not load credits from server.");
   }
 }
 
@@ -76,7 +100,7 @@ document.querySelector(".btn.blue").addEventListener("click", async () => {
       body: JSON.stringify(newCredit)
     });
     const created = await res.json();
-    alert(`✅ New credit issued: ${created.id}`);
+    alert(`New credit issued: ${created.id}`);
     fetchCredits();
   } catch (err) {
     alert("Failed to issue credit.");
@@ -95,7 +119,7 @@ document.querySelector(".btn.orange").addEventListener("click", async () => {
       body: JSON.stringify({ newOwner: "Org-B" })
     });
     const updated = await res.json();
-    alert(`✅ Transferred ${updated.id} to ${updated.owner}`);
+    alert(` Transferred ${updated.id} to ${updated.owner}`);
     fetchCredits();
   } catch (err) {
     alert("Failed to transfer credit.");
@@ -109,7 +133,7 @@ document.querySelector(".btn.red").addEventListener("click", async () => {
 
   try {
     await fetch(`http://localhost:5000/api/credits/${creditId}`, { method: "DELETE" });
-    alert(`🗑️ Retired credit: ${creditId}`);
+    alert(` Retired credit: ${creditId}`);
     fetchCredits();
   } catch (err) {
     alert("Failed to retire credit.");

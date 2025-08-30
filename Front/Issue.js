@@ -1,4 +1,6 @@
 // Handle form submission for issuing new credit
+
+
 document.getElementById("issueForm").addEventListener("submit", function (e) {
   e.preventDefault();
 

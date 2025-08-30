@@ -1,18 +1,27 @@
-// Populate dropdown with available credits
-window.onload = function () {
-  let credits = JSON.parse(localStorage.getItem("credits")) || [];
-  const creditSelect = document.getElementById("creditId");
+// Load credits from backend
+window.onload = async function () {
+  try {
+    const res = await fetch("http://localhost:5000/api/credits");
+    const credits = await res.json();
 
-  credits.forEach((credit) => {
-    let option = document.createElement("option");
-    option.value = credit.id;
-    option.textContent = `${credit.id} (${credit.volume} kg, Owner: ${credit.owner})`;
-    creditSelect.appendChild(option);
-  });
+    const creditSelect = document.getElementById("creditId");
+    creditSelect.innerHTML = '<option value="">-- choose --</option>';
+
+    credits.forEach((credit) => {
+      if (!credit.retired) {
+        let option = document.createElement("option");
+        option.value = credit.id;
+        option.textContent = `${credit.id} (${credit.volume} kg, Owner: ${credit.owner})`;
+        creditSelect.appendChild(option);
+      }
+    });
+  } catch (err) {
+    alert("Failed to load credits.");
+  }
 };
 
 // Handle transfer form submit
-document.querySelector("form").addEventListener("submit", function (e) {
+document.querySelector("form").addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const creditId = document.getElementById("creditId").value;
@@ -32,47 +41,26 @@ document.querySelector("form").addEventListener("submit", function (e) {
     return;
   }
 
-  let credits = JSON.parse(localStorage.getItem("credits")) || [];
-  let credit = credits.find((c) => c.id === creditId);
+  try {
+    const res = await fetch(`http://localhost:5000/api/credits/${creditId}/transfer`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ recipient, amount }),
+    });
 
-  if (!credit) {
-    alert("Credit not found.");
-    return;
+    const data = await res.json();
+    if (res.ok) {
+      alert(`Transfer Successful!\n${amount} kg transferred to ${recipient}`);
+      window.location.href = "display.html";
+    } else {
+      alert("Error: " + data.error);
+    }
+  } catch (err) {
+    alert("Failed to connect to server.");
   }
-
-  if (amount > credit.volume) {
-    alert("Insufficient credit volume.");
-    return;
-  }
-
-  // Deduct from current owner
-  credit.volume -= amount;
-
-  // Create new credit for recipient
-  const newCredit = {
-    id: `CRED-${Date.now()}`,
-    type: credit.type,
-    volume: amount,
-    owner: recipient
-  };
-
-  credits.push(newCredit);
-
-  // Remove old credit if volume becomes 0
-  if (credit.volume <= 0) {
-    credits = credits.filter((c) => c.id !== creditId);
-  }
-
-  // Save updates
-  localStorage.setItem("credits", JSON.stringify(credits));
-
-  alert(`Transfer Successful!\n${amount} kg transferred to ${recipient}`);
-
-  // Redirect back to dashboard
-  window.location.href = "display.html";
 });
 
-// Handle Cancel button
+// Cancel button
 document.querySelector(".btn-cancel").addEventListener("click", function () {
   window.location.href = "display.html";
 });

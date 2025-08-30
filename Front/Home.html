@@ -16,10 +16,28 @@
 
         <!-- Top action buttons -->
         <div class="action-buttons">
-          <button class="btn blue">Issue Credit</button>
+          
+         
+  
+          <form action="Issue.html" method="post">
+    <input id="loginBtn" class="btn blue"type="submit" value="Issue Credit">
+  </form>
+  
+          <form action="Transfer.html" method="post">
+    <input id="loginBtn" class="btn orange"type="submit" value="Transfer credit">
+  </form>
+  
+   <form action="Retire.html" method="post">
+    <input id="loginBtn" class="btn red"type="submit" value="Retire credit">
+  </form>
+
+          <form action="Verify.html" method="post">
+    <input id="loginBtn" class="btn purple"type="submit" value="Verify credit">
+  </form>
+          <!-- <button class="btn blue">Issue Credit</button>
           <button class="btn orange">Transfer Credit</button>
           <button class="btn red">Retire Credit</button>
-          <button class="btn purple">Verify Compliance</button>
+          <button class="btn purple">Verify Compliance</button> -->
         </div>
 
         <!-- Content area -->
@@ -28,15 +46,17 @@
           <section class="credits">
             <h2>Active Credits</h2>
             <div class="credit-card">
-              <p><strong>CRED-001</strong> – Solar PPA</p>
+              <p><strong>CRED-001</strong>  Solar PPA</p>
               <p><span class="highlight">120 kg</span> — owner:<br><b>Org-A</b></p>
-              <button class="small-btn purple">Verify</button>
+              <form action="./Certificate/certification.html" method="post">
+    <input id="Certificate" type="submit" class="small-btn purple" value="Verify">
+  </form>
             </div>
-
             <div class="credit-card">
-              <p><strong>CRED-002</strong> – Wind PPA</p>
+              <p><strong>CRED-002</strong>  Wind PPA</p>
               <p><span class="highlight">50 kg</span> — owner:<br><b>Org-A</b></p>
-              <button class="small-btn purple">Verify</button>
+              <form action="./Certificate/certification.html" method="post">
+    <input id="Certificate" type="submit" class="small-btn purple" value="Verify">
             </div>
           </section>
 

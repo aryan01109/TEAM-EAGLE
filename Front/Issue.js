@@ -35,5 +35,5 @@ document.getElementById("issueForm").addEventListener("submit", async function (
 
 // Handle Cancel button
 document.querySelector(".cancel").addEventListener("click", function () {
-  window.location.href = "display.html";
+  window.location.href = "Home.html";
 });

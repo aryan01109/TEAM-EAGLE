@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GHCI Certificate</title>
+  <link rel="stylesheet" href="certificate.css">
+</head>
+<body>
+
+<div class="certificate" id="certificate">
+  <h1>Green Hydrogen Certificate of India (GHCI)</h1>
+  <h2>Official Certificate of Green Hydrogen Production</h2>
+
+  <div class="field"><b>Producer:</b> <span id="producer"></span></div>
+  <div class="field"><b>Location:</b> <span id="location"></span></div>
+  <div class="field"><b>Certificate ID:</b> <span id="certificate_id"></span></div>
+  <div class="field"><b>Emission Rate:</b> <span id="emission"></span></div>
+
+  <!-- QR Code will be inserted here -->
+  <div id="qrcode"></div>
+</div>
+
+<button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+
+ <!-- QRCode library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<!-- html2pdf for PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+  // === Example User Data (replace with DB/API fetch) ===
+  const userData = {
+    producer: "Green Energy Pvt Ltd",
+    location: "Gujarat, India",
+    certificate_id: "GHCI-2025-001",
+    emission: "1.25 kg CO₂e / kg H₂"
+  };
+
+  // Insert values into HTML
+  document.getElementById("producer").innerText = userData.producer;
+  document.getElementById("location").innerText = userData.location;
+  document.getElementById("certificate_id").innerText = userData.certificate_id;
+  document.getElementById("emission").innerText = userData.emission;
+
+
+  // Download as PDF
+  function downloadPDF() {
+    const element = document.getElementById("certificate");
+    html2pdf().from(element).save("GHCI_Certificate.pdf");
+  }
+</script>
+<script src="certidication.js"></script>
+
+</body>
+</html>

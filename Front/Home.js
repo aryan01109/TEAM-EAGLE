@@ -1,4 +1,11 @@
-
+document.getElementById("loginBtn1").addEventListener("click", function(event) {
+       event.preventDefault(); // stop the default form submit
+       window.location.href = "certification.html"; // redirect to front.html
+  });
+  document.getElementById("loginBtn2").addEventListener("click", function(event) {
+       event.preventDefault(); // stop the default form submit
+       window.location.href = "certification.html"; // redirect to front.html
+  });
 let credits = [
   { id: "CRED-001", type: "Solar PPA", volume: 120, owner: "Org-A" },
   { id: "CRED-002", type: "Wind PPA", volume: 50, owner: "Org-A" }
@@ -8,6 +15,11 @@ let credits = [
 function renderCredits() {
   const creditsSection = document.querySelector(".credits");
   creditsSection.innerHTML = "<h2>Active Credits</h2>"; // reset section
+  document.getElementById("Certificate").addEventListener("click", function(event) {
+       event.preventDefault(); // stop the default form submit
+       window.location.href = "{certification.html}"; // redirect to front.html
+  });
+
 
   credits.forEach((credit, index) => {
     const card = document.createElement("div");
@@ -15,13 +27,10 @@ function renderCredits() {
     card.innerHTML = `
       <p><strong>${credit.id}</strong> – ${credit.type}</p>
       <p><span class="highlight">${credit.volume} kg</span> — owner:<br><b>${credit.owner}</b></p>
-       document.getElementById("Certificate").addEventListener("click", function(event) {
-       event.preventDefault(); // stop the default form submit
-       window.location.href = "${/Certificate/certification.html}"; // redirect to front.html
+       
+`;
+creditsSection.appendChild(card);
 });
-    `;
-    creditsSection.appendChild(card);
-  });
 
   // Update summary
   document.querySelector(".summary .credit-card").innerHTML = `

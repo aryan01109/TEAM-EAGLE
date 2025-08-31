@@ -1,0 +1,61 @@
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f4f9f4;
+  text-align: center;
+  margin: 0;
+  padding: 30px;
+}
+
+.certificate {
+    
+
+  width: 800px;
+  margin: auto;
+  padding: 50px;
+  background: rgb(240, 235, 235);
+  border: 6px double darkgreen;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.certificate h1 {
+  color: darkgreen;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.certificate h2 {
+  color: #444;
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+
+.field {
+  margin: 10px 0;
+  font-size: 18px;
+  text-align: left;
+}
+
+#qrcode {
+  margin-top: 20px;
+  
+
+}
+
+
+.download-btn {
+  margin-top: 25px;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: darkgreen;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.download-btn:hover {
+  background: seagreen;
+}

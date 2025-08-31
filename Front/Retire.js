@@ -57,5 +57,5 @@ document.querySelector("form").addEventListener("submit", async function (e) {
 
 // Cancel button
 document.querySelector(".btn-cancel").addEventListener("click", function () {
-  window.location.href = "display.html";
+  window.location.href = "Home.html";
 });

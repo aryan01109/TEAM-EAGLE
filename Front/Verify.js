@@ -1,3 +1,16 @@
+ document.getElementById("loginBtn").addEventListener("click", function(event) {
+       event.preventDefault(); // stop the default form submit
+       window.location.href = "Home.html"; // redirect to front.html
+  });
+
+   document.getElementById("loginBtn1").addEventListener("click", function(event) {
+       event.preventDefault(); // stop the default form submit
+       window.location.href = "certificat.html"; // redirect to front.html
+  });
+  document.getElementById("loginBtn1").addEventListener("click", function(event) {
+       event.preventDefault(); // stop the default form submit
+       window.location.href = "certificat.html"; // redirect to front.html
+  });
 // Load credits dynamically on page load
 window.onload = async function () {
   const listContainer = document.querySelector(".list");
@@ -27,7 +40,7 @@ window.onload = async function () {
       }
     });
   } catch (err) {
-    listContainer.innerHTML = "<p>⚠️ Failed to connect to server.</p>";
+    listContainer.innerHTML = "<p> Failed to connect to server.</p>";
   }
 };
 
@@ -61,9 +74,4 @@ Owner: ${credit.owner}
   } catch (err) {
     alert("Failed to fetch credit details.");
   }
-}
-
-// Go back
-function goBack() {
-  window.location.href = "display.html";
 }

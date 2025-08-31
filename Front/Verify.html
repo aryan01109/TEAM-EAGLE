@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hydrogen Credits – Verify Compliance</title>
+  <title>Hydrogen Credits Verify Compliance</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
 <body>
   <!-- Semester 1 -->
   <div class="card" role="dialog" aria-labelledby="title1" aria-describedby="subtitle1">
-    <h1 id="title1">Hydrogen Credits – Sem 1</h1>
+    <h1 id="title1">Hydrogen Credits Sem 1</h1>
     <div id="subtitle1" class="subtitle">Verify Compliance</div>
     <p class="hint">Select a credit to run quick compliance checks (RFNBO/PPA/GO).</p>
 
@@ -22,7 +22,9 @@
           <div class="item-title">CRED-001 — Solar PPA</div>
           <div class="item-strong">120 kg • owner: Org-A</div>
         </div>
-        <button class="btn" onclick="runChecks('CRED-001')">Run checks</button>
+    <form action="certificat.html" method="get">
+    <input id="loginBtn1" class="btn"type="submit" value="Run checks">
+  </form>
       </div>
 
       <div class="item">
@@ -30,11 +32,16 @@
           <div class="item-title">CRED-002 — Wind PPA</div>
           <div class="item-strong">50 kg • owner: Org-A</div>
         </div>
-        <button class="btn" onclick="runChecks('CRED-002')">Run checks</button>
+    <form action="certificat.html" method="get">
+    <input id="loginBtn2" class="btn"type="submit" value="Run checks">
+  </form>
       </div>
     </div>
 
-    <button class="btn back" onclick="goBack()">Back</button>
+<form action="Home.html" method="get">
+    <input id="loginBtn" class="btn"type="submit" value="Back">
+  </form>
+  
   </div>
 
   <script src="Verify.html"></script>
